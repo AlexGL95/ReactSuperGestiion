@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { user_auth } from "./auth/auth";
+
+// importaciones Firebase
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./credentials/db";
+import { getFirestore, collection, getDocs,doc } from 'firebase/firestore/lite';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +16,25 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+const getDepartamentos = async (db) =>  {
+  const departamentos_coleccion = collection(db, 'departamentos');
+  const dep = doc(db,'departamento','Carnes Frias');
+  console.log(dep.type);
+  const respuestaFirebase = await getDocs(departamentos_coleccion);
+  console.log(respuestaFirebase.docs);
+  const departamentos_lista = respuestaFirebase.docs.map(departamento => departamento.data());
+  return departamentos_lista;
+}
+
+getDepartamentos(db).then((departamentos)=>{
+  for (const departamento of departamentos) {
+    console.log(departamento);
+  }
+});
+
+//user_auth('departamentos').then(()=>{});
