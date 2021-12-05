@@ -12,7 +12,7 @@ const getUsuarios = async (db,departamento) =>  {
     const respuestaFirebase = await getDocs(usuarios_coleccion);
     const usuarios_lista = respuestaFirebase.docs.map(departamento => departamento.data());
     return usuarios_lista;
-  }
+}
 
 export async function user_auth(departamento){
     const usuarios = await getUsuarios(db,departamento);
