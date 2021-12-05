@@ -3,10 +3,11 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../credentials/db";
 import { 
     getFirestore, 
-    getDocs, 
     collection, 
-    addDoc,
+    deleteDoc,
+    getDocs, 
     setDoc,
+    addDoc,
     doc, 
 } from 'firebase/firestore';
 
@@ -42,6 +43,11 @@ const usuarios_update = async (db, usuario, id) => {
     return true;
 }
 
+const usuarios_delete = async (db, id) => {
+    await deleteDoc(doc(db, 'usuarios', id));
+    return true;
+}
+
 // funcion que regresa los usuarios que tienen como departamento el string recibido
 export async function usuarios_departamento(departamento){
     const usuarios = await getUsuarios(db,departamento);
@@ -60,6 +66,10 @@ export async function usuarios_todos(departamento){
 
 export async function usuarios_crear(usuario){
     return await usuarios_create(db,usuario);
+}
+
+export async function usuarios_eliminar(id){
+    return await usuarios_delete(db,id);
 }
 
 export async function usuarios_actualizar(usuario,id){

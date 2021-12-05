@@ -3,8 +3,9 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../credentials/db";
 import { 
     getFirestore, 
-    getDocs, 
     collection, 
+    deleteDoc,
+    getDocs, 
     addDoc,
     setDoc,
     doc, 
@@ -23,11 +24,38 @@ const getDepartamentos = async (db) =>  {
         return {
             nombre, descripcion,
             id: departamento.id
-        }
+        };
     });
     return departamentos_lista;
-  }
-  
-  export async function departamentos_todos () {
+}
+
+const departamentos_create = async (db,departamento) => {
+    const docRef = await addDoc( collection(db, 'departamentos'), departamento);
+    return docRef.id;
+}
+
+const departamentos_update = async (db, departamento, id) => {
+    await setDoc( doc(db, 'departamentos', id), departamento);
+    return true;
+}
+
+const departamentos_delete = async (db, id) => {
+    await deleteDoc(doc(db, 'departamentos', id));
+    return true;
+}
+
+export async function departamentos_eliminar(id){
+    return await departamentos_delete(db,id);
+}
+
+export async function departamentos_actualizar (departamento,id) {
+    return await departamentos_update(db,departamento,id);
+};
+
+export async function departamentos_crear(departamento) {
+    return await departamentos_create(db,departamento);
+};
+
+export async function departamentos_todos () {
     return await getDepartamentos(db);
-  };
+};
