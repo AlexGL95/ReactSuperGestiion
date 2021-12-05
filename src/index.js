@@ -1,12 +1,11 @@
 // importaciones Firebase
 import { getFirestore, collection, getDocs,doc } from 'firebase/firestore';
-import { firebaseConfig } from "./credentials/db";
+import { firebaseConfig } from "./scripts/credentials/db";
 import { initializeApp } from "firebase/app";
-import { user_auth } from "./auth/auth"; 
+import { user_auth } from "./scripts/auth/auth"; 
 import ReactDOM from 'react-dom';
 import React from 'react';
-import App from './App';
-import './index.css';
+import './index.css'
 import { 
   usuarios_departamento, 
   usuarios_actualizar,
@@ -14,26 +13,23 @@ import {
   usuarios_getId,
   usuarios_crear,
   usuarios_todos,
-} from "./users/users";
+} from "./scripts/users/users";
 import { 
   departamentos_actualizar, 
   departamentos_eliminar,
   departamentos_crear,
   departamentos_getId,
   departamentos_todos,
-} from "./department/department";
+} from "./scripts/department/department";
+import { SuperGestiion } from './SuperGestiion';
+import { BrowserRouter } from 'react-router-dom';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <SuperGestiion />,
   document.getElementById('root')
 );
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// variables de testeo
 const id = "EIryW6FVozRpQuckPjKv";
 const idDep = 'HTIvmnj1tWdQ2sHLJcyX';
 
