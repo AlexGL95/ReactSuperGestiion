@@ -6,6 +6,7 @@ import {
     collection, 
     deleteDoc,
     getDocs, 
+    getDoc,
     setDoc,
     addDoc,
     doc, 
@@ -20,15 +21,10 @@ const getUsuarios = async (db) =>  {
     const respuestaFirebase = await getDocs(usuarios_coleccion);
     const usuarios_lista = respuestaFirebase.docs.map(usuario =>
         {
-            const {
-                nombre, apellidos, departamento, dias,
-                edad, genero, pass, role
-            } = usuario.data();
             return {
-                nombre, apellidos, departamento, dias,
-                edad, genero, pass, role,
+                ...usuario.data(),
                 id: usuario.id
-            }
+            };
         });
     return usuarios_lista;
 }
@@ -48,6 +44,11 @@ const usuarios_delete = async (db, id) => {
     return true;
 }
 
+const usuarios_getById = async (db, id) => {
+   const fireUser = await getDoc(doc(db, 'usuarios', id));
+   return { ...fireUser.data(), id: fireUser.id };
+}
+
 // funcion que regresa los usuarios que tienen como departamento el string recibido
 export async function usuarios_departamento(departamento){
     const usuarios = await getUsuarios(db,departamento);
@@ -60,18 +61,27 @@ export async function usuarios_departamento(departamento){
     return usuarios_array;
 }
 
-export async function usuarios_todos(departamento){
-   return await getUsuarios(db,departamento);
+// regresa todos los usuarios por departamento
+export async function usuarios_todos(){
+   return await getUsuarios(db);
 }
 
+// crea un usuario
 export async function usuarios_crear(usuario){
     return await usuarios_create(db,usuario);
 }
 
+// elimina un usuario
 export async function usuarios_eliminar(id){
     return await usuarios_delete(db,id);
 }
 
+// obtiene un usuario por su id
+export async function usuarios_getId(id){
+    return await usuarios_getById(db,id);
+}
+
+// actualiza un usuario
 export async function usuarios_actualizar(usuario,id){
     return await usuarios_update(db,usuario,id);
 }

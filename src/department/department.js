@@ -5,7 +5,8 @@ import {
     getFirestore, 
     collection, 
     deleteDoc,
-    getDocs, 
+    getDocs,
+    getDoc, 
     addDoc,
     setDoc,
     doc, 
@@ -44,8 +45,17 @@ const departamentos_delete = async (db, id) => {
     return true;
 }
 
+const departamentos_getById = async (db, id) => {
+   const departamento =  await getDoc(doc(db, 'departamentos', id));
+    return {...departamento.data(), id:departamento.id};
+}
+
 export async function departamentos_eliminar(id){
     return await departamentos_delete(db,id);
+}
+
+export async function departamentos_getId(id){
+   return await departamentos_getById(db,id);
 }
 
 export async function departamentos_actualizar (departamento,id) {

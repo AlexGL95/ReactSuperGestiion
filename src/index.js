@@ -1,26 +1,28 @@
-import React from 'react';
+// importaciones Firebase
+import { getFirestore, collection, getDocs,doc } from 'firebase/firestore';
+import { firebaseConfig } from "./credentials/db";
+import { initializeApp } from "firebase/app";
+import { user_auth } from "./auth/auth"; 
 import ReactDOM from 'react-dom';
-import './index.css';
+import React from 'react';
 import App from './App';
-import { user_auth } from "./auth/auth";
+import './index.css';
 import { 
   usuarios_departamento, 
   usuarios_actualizar,
-  usuarios_crear,
   usuarios_eliminar, 
-  usuarios_todos 
+  usuarios_getId,
+  usuarios_crear,
+  usuarios_todos,
 } from "./users/users";
 import { 
-  departamentos_todos,
-  departamentos_crear,
-  departamentos_eliminar,
   departamentos_actualizar, 
+  departamentos_eliminar,
+  departamentos_crear,
+  departamentos_getId,
+  departamentos_todos,
 } from "./department/department";
 
-// importaciones Firebase
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "./credentials/db";
-import { getFirestore, collection, getDocs,doc } from 'firebase/firestore';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -32,18 +34,20 @@ ReactDOM.render(
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const id = "LkyxOzxTZrMzJO7qLcQj";
-const idDep = '0qHE6jkbcwulAFFZP1RE';
+const id = "EIryW6FVozRpQuckPjKv";
+const idDep = 'HTIvmnj1tWdQ2sHLJcyX';
+
 const usuario = {
   apellidos: "Gonzalez Romero",
   departamento: "Carnes Frias",
-  dias: "L,M,Mi,J,V,S",
-  edad: 35,
+  dias: "L,M,V,S",
+  edad: 22,
   genero: "Masculino",
-  nombre: "Pedro",
+  nombre: "Paco",
   pass: "12345",
-  role: "Gestor",
+  role: "Asesor de ventas",
 };
+
 const usuarioUpdate = {
   apellidos: "Hernandez",
   departamento: "Vinos",
@@ -61,7 +65,7 @@ const departamento = {
 }
 
 
-usuarios_departamento('Carnes Frias').then(arreglo => {
+usuarios_departamento('Vinos').then(arreglo => {
   console.log('Usuarios Por departamento: ',arreglo);
 })
 .catch(error => {
@@ -82,13 +86,27 @@ departamentos_todos().then(arregloDep =>{
   console.log('Error: ',error);
 });
 
+usuarios_getId(id).then(usuario =>{
+  console.log('usuario: ', usuario);
+})
+.catch(error => {
+  console.log('Error: ',error);
+});
+
+departamentos_getId(idDep).then(departamento =>{
+  console.log('departamento: ', departamento);
+})
+.catch(error => {
+  console.log('Error: ',error);
+});
+/*
+
 departamentos_eliminar(id).then(success => {
   console.log(success);
 }).catch(error => {
   console.log('Error: ',error);
 });
 
-/*
 
 usuarios_eliminar(id).then(success => {
   console.log(success);
@@ -115,16 +133,17 @@ departamentos_crear(departamento).then(success => {
   console.log('Error: ',error);
 });
 
-usuarios_crear(usuario).then(success => {
-  console.log(success);
-}).catch(error => {
-  console.log('Error: ',error);
-});
 
 usuarios_actualizar(usuarioUpdate,id).then(success => {
   console.log(success);
 }).catch(error => {
   console.log('Error: ',error);
+});
+
+usuarios_crear(usuario).then(success => {
+  console.log(success);
+}).catch(error => {
+  console.log('Error: ', error);
 });
 
 */

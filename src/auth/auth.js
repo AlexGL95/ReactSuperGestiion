@@ -14,7 +14,7 @@ const getUsuarios = async (db,departamento) =>  {
     return usuarios_lista;
 }
 
-export async function user_auth(departamento){
+export async function logIn(departamento){
     const usuarios = await getUsuarios(db,departamento);
     for (const usuario of usuarios) {
         console.log(usuario);
