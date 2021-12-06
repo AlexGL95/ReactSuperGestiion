@@ -1,9 +1,16 @@
+// dependences
+import { useNavigate } from 'react-router-dom';
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-export const Navbar = ({username = 'Alex'}) => {
+export const Navbar = () => {
+    const Usuario = localStorage.getItem('Usuario');
+    const navigate = useNavigate();
 
     const handleLogout = () => {
+        navigate('/Login',{
+            replace:true
+        });
         console.log('Se desloguio');
     }
 
@@ -12,10 +19,16 @@ export const Navbar = ({username = 'Alex'}) => {
             
 
             <div className='navbar-collapse'>
-                <div className='navbar-nav'>
-                    <img src = './src/logo.svg' alt= 'Logotipo'></img>
+
+                <div className='navbar-nav bg-light rounded text-center'>
+                    <div className="row">
+                        <div className='col-12'>
+                            <img className='p-1' width='120' src = 'assets/logo.svg' alt= 'Logotipo'></img>
+                        </div>
+                    </div>
                 </div>
-                <div className='navbar-nav'>
+
+                <div className='navbar-nav text-center'>
 
                     <NavLink 
                         className={({isActive}) => 'nav-item nav-link ' + (isActive ? 'active':'') }
@@ -36,10 +49,10 @@ export const Navbar = ({username = 'Alex'}) => {
                 </div>
             </div>
 
-            <div className='navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end'>
-                <ul className='navbar-nav ml-auto'>
+            <div className='navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-center justify-content-sm-end'>
+                <ul className='navbar-nav ml-sm-auto text-center'>
                     <span className='nav-item nav-link text-info'>
-                        { username }
+                        { Usuario }
                     </span>
                     <button 
                         className='nav-item nav-link btn' 
