@@ -68,12 +68,7 @@ usuarios_departamento('Vinos').then(arreglo => {
   console.log('Error: ',error);
 });
 
-usuarios_todos().then(arreglo => {
-  console.log('Todos los usuarios: ',arreglo);
-})
-.catch(error => {
-  console.log('Error: ',error);
-});
+
 
 departamentos_todos().then(arregloDep =>{
   console.log('Departamentos: ', arregloDep);
