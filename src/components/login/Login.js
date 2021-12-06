@@ -1,7 +1,7 @@
 // dependences
 import { useNavigate } from 'react-router-dom';
-import { MyGenericModal } from "../modals/Modal";
-import { MensajeError } from "./MensajeError";
+import { MyGenericModal } from '../modals/Modal';
+import { MensajeError } from './MensajeError';
 import './Login.css'
 import { logIn } from '../../scripts/auth/auth';
 
@@ -15,7 +15,7 @@ export const Login = () => {
         logIn(mail.value,pass.value)
         .then(userData => {
             if (userData && userData.role === 'Gestor') {
-                localStorage.setItem("Usuario", userData.nombre + ' ' + userData.apellidos);
+                localStorage.setItem('Usuario', userData.nombre + ' ' + userData.apellidos);
                 navigate('/Usuarios',{
                     replace: true
                 });
@@ -53,7 +53,7 @@ export const Login = () => {
 
                                 <div className='col-12 form-group my-3 text-left'>
 
-                                <span class="label-input mr-auto">Correo</span>
+                                <span class='label-input mr-auto'>Correo</span>
 
                                     <input
                                         className='form-control'
@@ -66,7 +66,7 @@ export const Login = () => {
 
                                 <div className='col-12 form-group my-3'>
                         
-                                    <span class="label-input">Contraseña</span>
+                                    <span class='label-input'>Contraseña</span>
                        
                                     <input
                                         className='form-control'

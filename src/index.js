@@ -1,8 +1,8 @@
 // importaciones Firebase
 import { getFirestore, collection, getDocs,doc } from 'firebase/firestore';
-import { firebaseConfig } from "./scripts/credentials/db";
-import { initializeApp } from "firebase/app";
-import { user_auth } from "./scripts/auth/auth"; 
+import { firebaseConfig } from './scripts/credentials/db';
+import { initializeApp } from 'firebase/app';
+import { user_auth } from './scripts/auth/auth'; 
 import ReactDOM from 'react-dom';
 import React from 'react';
 import './index.css'
@@ -12,15 +12,14 @@ import {
   usuarios_eliminar, 
   usuarios_getId,
   usuarios_crear,
-  usuarios_todos,
-} from "./scripts/users/users";
+} from './scripts/users/users';
 import { 
   departamentos_actualizar, 
   departamentos_eliminar,
   departamentos_crear,
   departamentos_getId,
   departamentos_todos,
-} from "./scripts/department/department";
+} from './scripts/department/department';
 import { SuperGestiion } from './SuperGestiion';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -30,29 +29,31 @@ ReactDOM.render(
   document.getElementById('root')
 );
 // variables de testeo
-const id = "EIryW6FVozRpQuckPjKv";
+const id = 'EIryW6FVozRpQuckPjKv';
 const idDep = 'HTIvmnj1tWdQ2sHLJcyX';
 
 const usuario = {
-  apellidos: "Gonzalez Romero",
-  departamento: "Carnes Frias",
-  dias: "L,M,V,S",
+  apellidos: 'Gonzalez Romero',
+  departamento: 'Carnes Frias',
+  dias: 'L,M,V,S',
   edad: 22,
-  genero: "Masculino",
-  nombre: "Paco",
-  pass: "12345",
-  role: "Asesor de ventas",
+  genero: 'Masculino',
+  nombre: 'Paco',
+  pass: '12345',
+  role: 'Asesor de ventas',
+  email: 'email@mail.com',
 };
 
 const usuarioUpdate = {
-  apellidos: "Hernandez",
-  departamento: "Vinos",
-  dias: "L,M,Mi",
+  apellidos: 'Hernandez',
+  departamento: 'Vinos',
+  dias: 'L,M,Mi',
   edad: 35,
-  genero: "Masculino",
-  nombre: "Luis",
-  pass: "12345",
-  role: "Gestor",
+  genero: 'Masculino',
+  nombre: 'Luis',
+  pass: '12345',
+  role: 'Gestor',
+  email: 'email@mail.com'
 };
 
 const departamento = {
@@ -67,7 +68,6 @@ usuarios_departamento('Vinos').then(arreglo => {
 .catch(error => {
   console.log('Error: ',error);
 });
-
 
 
 departamentos_todos().then(arregloDep =>{
