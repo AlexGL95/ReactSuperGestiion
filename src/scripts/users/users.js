@@ -46,6 +46,9 @@ const usuarios_delete = async (db, id) => {
 
 const usuarios_getById = async (db, id) => {
    const fireUser = await getDoc(doc(db, 'usuarios', id));
+   if (!fireUser.data()) {
+       return undefined;
+   }
    return { ...fireUser.data(), id: fireUser.id };
 }
 

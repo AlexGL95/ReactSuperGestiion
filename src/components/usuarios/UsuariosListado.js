@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { usuarios_todos } from '../../scripts/users/users';
 import { useEffect, useState } from 'react';
+import { Link } from '../../../node_modules/react-router-dom/index';
+
+
 export  const UsuariosListado = () => {
     
     const [users, setUser] = useState([]);
@@ -20,17 +23,13 @@ export  const UsuariosListado = () => {
     const navigate = useNavigate();
    
     const addUser = () =>{
-        navigate('/Usuarios_Create');
+        navigate('/Usuarios_Create/any');
         return;
     }
-    const editUser = (key) =>{
-        console.log(key);
-        //navigate('/Usuarios_Create');
-        return;
-    }
+
     return(
         <>
-            <div className='row mt-3'>
+            <div className='row mt-3 m-5'>
                 <div className='col-12 text-center'>
                     <h1>Listado de usuarios</h1>
                 </div>
@@ -43,8 +42,8 @@ export  const UsuariosListado = () => {
                     Nuevo usuario
                     </button>
                 </div>
-                <table class="table table-sm table-striped table-responsive table-hover mt-3 table-bordered" id='tablaUsuarios'>
-                    <thead class="thead-inverse|thead-default">
+                <table className="table table-sm table-striped table-responsive table-hover mt-3 table-bordered" id='tablaUsuarios'>
+                    <thead className="thead-inverse|thead-default">
                         <tr>
                             <th scope="col" className='bg-dark text-light font-weight-bold text-center'>Nombre</th>
                             <th scope="col" className='bg-dark text-light font-weight-bold text-center'>Departamento</th>
@@ -62,10 +61,12 @@ export  const UsuariosListado = () => {
                                 <td className='text-center'>{user.email}</td>
                                 <td className='text-center'>{user.dias}</td>
                                 <td className='text-center'>
-                                    <button 
-                                        className='btn btn-warning mx-2'
-                                        onClick = { editUser }
-                                    >Editar</button>
+                                    <Link to = {`/Usuarios_Create/${user.id}`} >
+                                        <button 
+                                            className='btn btn-warning mx-2'
+                                        >
+                                        Editar</button>    
+                                    </Link>
                                     <button className='btn btn-danger mx-2'>Eliminar</button>
                                 </td>
                                 </tr>

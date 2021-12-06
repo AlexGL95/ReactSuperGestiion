@@ -1,7 +1,4 @@
 // importaciones Firebase
-import { getFirestore, collection, getDocs,doc } from 'firebase/firestore';
-import { firebaseConfig } from './scripts/credentials/db';
-import { initializeApp } from 'firebase/app';
 import { user_auth } from './scripts/auth/auth'; 
 import ReactDOM from 'react-dom';
 import React from 'react';
@@ -18,7 +15,6 @@ import {
   departamentos_eliminar,
   departamentos_crear,
   departamentos_getId,
-  departamentos_todos,
 } from './scripts/department/department';
 import { SuperGestiion } from './SuperGestiion';
 import { BrowserRouter } from 'react-router-dom';
@@ -69,13 +65,6 @@ usuarios_departamento('Vinos').then(arreglo => {
   console.log('Error: ',error);
 });
 
-
-departamentos_todos().then(arregloDep =>{
-  console.log('Departamentos: ', arregloDep);
-})
-.catch(error => {
-  console.log('Error: ',error);
-});
 
 usuarios_getId(id).then(usuario =>{
   console.log('usuario: ', usuario);

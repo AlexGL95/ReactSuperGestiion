@@ -20,10 +20,10 @@ export const Navbar = () => {
 
             <div className='navbar-collapse'>
 
-                <div className='navbar-nav bg-light rounded text-center'>
+                <div className='navbar-nav text-center'>
                     <div className="row">
                         <div className='col-12'>
-                            <img className='p-1' width='120' src = 'assets/logo.svg' alt= 'Logotipo'></img>
+                            <img className='p-1' width='150' src = 'https://s3.us-east-2.amazonaws.com/biitacora.develop.com/logotipo.svg' alt= 'Logotipo'></img>
                         </div>
                     </div>
                 </div>
@@ -32,16 +32,13 @@ export const Navbar = () => {
 
                     <NavLink 
                         className={({isActive}) => 'nav-item nav-link ' + (isActive ? 'active':'') }
-                        exact
                         to='/Usuarios'
                     >
                         Usuarios
                     </NavLink>
 
                     <NavLink 
-                        activeClassName='active'
                         className={({isActive}) => 'nav-item nav-link ' + (isActive ? 'active':'') }
-                        exact
                         to='/Departamentos'
                     >
                         Departamentos

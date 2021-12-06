@@ -53,7 +53,7 @@ export const Login = () => {
 
                                 <div className='col-12 form-group my-3 text-left'>
 
-                                <span class='label-input mr-auto'>Correo</span>
+                                <span className='label-input mr-auto'>Correo</span>
 
                                     <input
                                         className='form-control'
@@ -66,7 +66,7 @@ export const Login = () => {
 
                                 <div className='col-12 form-group my-3'>
                         
-                                    <span class='label-input'>Contraseña</span>
+                                    <span className='label-input'>Contraseña</span>
                        
                                     <input
                                         className='form-control'

@@ -9,14 +9,12 @@ export const DashBoardRoutes = () =>{
     return(
         <>
          <Navbar />
-        <div className = 'container'>
             <Routes>
                     <Route path='Usuarios' element={<UsuariosListado />} />
-                    <Route path='Usuarios_Create' element={<UsuariosRegistro />} />
+                    <Route path='Usuarios_Create/:id' element={<UsuariosRegistro />} />
                     <Route path='Departamentos' element={<DepartamentosListado />} />
-                    <Route path='Departamentos_Create' element={<DepartamentosRegistro />} />
+                    <Route path='Departamentos_Create/:id' element={<DepartamentosRegistro />} />
             </Routes>
-        </div>
         </>
     );
 }
