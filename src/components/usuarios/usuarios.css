@@ -11,7 +11,17 @@
     z-index: -1;
 }
 /* FIN Imagen background */
-
+.full-size{
+    width: 100%;
+    position: absolute;
+    background-color: gray;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: local;
+    background-size: cover;
+    height: 91.5%;
+    z-index: -1;
+}
 .btn-submit{
     background-color: #E6501E;
     color: white;

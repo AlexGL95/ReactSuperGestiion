@@ -37,7 +37,8 @@ export const DepartamentosRegistro = () => {
         nombredpto.value = departamento.nombre;
         descdpto.value = departamento.descripcion;
     }else{
-
+        nombredpto.value ='';
+        descdpto.value = '';
     }
 
     const guardarUsuario = async () =>{
@@ -47,11 +48,8 @@ export const DepartamentosRegistro = () => {
         }
         console.log('info de inputs',dpto);
         if (departamento) {
-            console.log('Edicion');
            await usuarios_departamento(valorInicial).then(async(usuarios)=>{
-               console.log(usuarios);
                 for (const usuario of usuarios) {
-                    console.log('Usuario: ',usuario);
                     const newUser = { 
                         nombre:usuario.nombre,
                         apellidos:usuario.apellidos,

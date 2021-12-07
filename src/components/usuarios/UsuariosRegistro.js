@@ -183,6 +183,9 @@ export const UsuariosRegistro = () => {
                                 name='depto'
                                 required
                                 >
+                                    <option value='Sin Asignar'>
+                                        Sin Asignar
+                                    </option>
                                 {departmentos.map((departamento, i)=>{
                                    return ( <option 
                                     key={departamento.id} 

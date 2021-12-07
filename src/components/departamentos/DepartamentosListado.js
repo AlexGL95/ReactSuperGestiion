@@ -62,7 +62,9 @@ export const DepartamentosListado = () => {
                                         >
                                         Editar</button>    
                                     </Link>
+                                    <Link to = {`/Usuarios_Delete/${user.id}/dpto`} >
                                     <button className='btn btn-danger mx-2'>Eliminar</button>
+                                    </Link>
                                 </td>
                                 </tr>
                             );
