@@ -1,7 +1,5 @@
 // dependences
 import { useNavigate } from 'react-router-dom';
-import { MyGenericModal } from '../modals/Modal';
-import { MensajeError } from './MensajeError';
 import './Login.css'
 import { logIn } from '../../scripts/auth/auth';
 
@@ -51,9 +49,9 @@ export const Login = () => {
 
                             <form>
 
-                                <div className='col-12 form-group my-3 text-left'>
+                                <div className='col-12 form-group my-3 text-start'>
 
-                                <span className='label-input mr-auto'>Correo</span>
+                                <span className='label-input'>Correo</span>
 
                                     <input
                                         className='form-control'
@@ -64,7 +62,7 @@ export const Login = () => {
                                     ></input>
                                 </div>
 
-                                <div className='col-12 form-group my-3'>
+                                <div className='col-12 form-group my-3 text-start'>
                         
                                     <span className='label-input'>Contraseña</span>
                        

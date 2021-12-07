@@ -47,6 +47,9 @@ const departamentos_delete = async (db, id) => {
 
 const departamentos_getById = async (db, id) => {
    const departamento =  await getDoc(doc(db, 'departamentos', id));
+   if (!departamento.data()) {
+    return undefined;
+}
     return {...departamento.data(), id:departamento.id};
 }
 

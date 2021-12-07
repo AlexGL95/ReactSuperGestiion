@@ -56,11 +56,11 @@ export  const UsuariosListado = () => {
                         {users.map((user, index) => {
                             return (
                                 <tr key={user.id} >
-                                <td className='text-center'>{user.nombre}</td>
-                                <td className='text-center'>{user.departamento}</td>
-                                <td className='text-center'>{user.email}</td>
-                                <td className='text-center'>{user.dias}</td>
-                                <td className='text-center'>
+                                <td className='text-center text-wrap'>{user.nombre} {user.apellidos}</td>
+                                <td className='text-center text-wrap'>{user.departamento}</td>
+                                <td className='text-center text-wrap'>{user.email}</td>
+                                <td className='text-center text-wrap'>{user.dias}</td>
+                                <td className='text-center text-wrap'>
                                     <Link to = {`/Usuarios_Create/${user.id}`} >
                                         <button 
                                             className='btn btn-warning mx-2'

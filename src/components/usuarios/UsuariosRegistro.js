@@ -1,15 +1,13 @@
 // dependences
 import { useNavigate, useParams } from 'react-router-dom';
-import { usuarios_getId } from '../../scripts/users/users';
+import { usuarios_getId, usuarios_crear,usuarios_actualizar } from '../../scripts/users/users';
 import { departamentos_todos } from '../../scripts/department/department';
 import { useEffect, useState } from 'react';
 import './usuarios.css'
-import CheckBox from './checkbox';
 
 export const UsuariosRegistro = () => {
 
     const params = useParams();
-    console.log(params.id);
     const navigate = useNavigate();
     const [user, setUser] = useState(undefined);
     const [reloadUsers, setReloadUsers] = useState(false);
@@ -39,16 +37,57 @@ export const UsuariosRegistro = () => {
         setReloadUsers(false)
     }, [reloadUsers]);
 
+    
+    let title = 'Registro de Usuarios';
+    if (params.id !== 'any') {
+        title = 'Edición de Usuarios';
+    }
     const roles = ['Gestor','Empleado'];
+    const nameInput = document.getElementById('nombre');
+    const apellidosInput = document.getElementById('Apellidos');
+    const emailInput = document.getElementById('mail');
+    const passInput = document.getElementById('pass');
+    const rolInput = document.getElementById('rol');
+    const dptoInput = document.getElementById('depto');
+    const diasInput = document.getElementById('dias');
 
     if (user) {
-        console.log(user.id);
+        nameInput.value = user.nombre;
+        apellidosInput.value = user.apellidos;
+        emailInput.value = user.email? user.email:'';
+        passInput.value = user.pass;
+        rolInput.value = user.role;
+        dptoInput.value = user.departamento;
+        diasInput.value = user.dias;
     }
-    const guardarUsuario = () =>{
+    const guardarUsuario = async () =>{
         console.log('Redireccion');
-        const form = document.getElementById('form');
-        if (!form.oninvalid) {
-            navigate('/Usuarios');
+        const usuario ={
+            nombre:nameInput.value,
+            apellidos:apellidosInput.value,
+            email:emailInput.value,
+            pass:passInput.value,
+            role:rolInput.value,
+            departamento:dptoInput.value,
+            dias:diasInput.value,
+        }
+        if (user) {
+            console.log('Edicion');
+            usuarios_actualizar(usuario,params.id).then(success => {
+                console.log(success);
+                navigate('/Usuarios');
+              }).catch(error => {
+                console.log('Error: ',error);
+              });
+        }
+        else{
+            console.log('Creacion');
+           await usuarios_crear(usuario).then(success => {
+                navigate('/Usuarios');
+                console.log(success);
+            }).catch(error => {
+                console.log('Error: ', error);
+            });
         }
         return;
     }
@@ -57,10 +96,14 @@ export const UsuariosRegistro = () => {
         <div className= 'row justify-content-center img-background-usuarios'>
             <div className='col-12 col-sm-10 col-md-9 col-lg-7 text-center my-auto bg-light rounded'>
 
-
-                <form id='form'>
+                <form id='form' onSubmit={ guardarUsuario } action='javascript:void(0);'>
                     <div className='row py-4 px-3 '>
 
+                        <div className='col-12 form-group my-3 my-md-3 text-center'>
+                            <h3>
+                                {title}
+                            </h3>
+                        </div>
 
                         <div className='col-12 col-md-6 col-lg-4 form-group my-1 my-md-3 text-start'>
 
@@ -68,7 +111,7 @@ export const UsuariosRegistro = () => {
 
                             <input
                                 className='form-control'
-                                type='email'
+                                type='text'
                                 id='nombre'
                                 name='nombre'
                                 required
@@ -136,8 +179,8 @@ export const UsuariosRegistro = () => {
                             <span className='label-input'>Departamento</span>
                             <select 
                                 className='form-control'
-                                id='rol'
-                                name='rol'
+                                id='depto'
+                                name='depto'
                                 required
                                 >
                                 {departmentos.map((departamento, i)=>{
@@ -164,7 +207,7 @@ export const UsuariosRegistro = () => {
                             <button
                                 type='submit'
                                 className = 'btn btn-submit'
-                                onClick = { guardarUsuario }
+                                onSubmit = { guardarUsuario }
                                 >
                                 Guardar
 
